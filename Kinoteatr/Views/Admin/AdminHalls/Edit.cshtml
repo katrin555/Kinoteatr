@@ -1,0 +1,29 @@
+@model Hall
+@{
+    ViewData["Title"] = "Редактировать зал";
+}
+
+<h1>Редактировать зал</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div>
+        <label asp-for="Name">Название</label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <label asp-for="TotalSeats">Количество мест</label>
+        <input asp-for="TotalSeats" type="number" />
+        <span asp-validation-for="TotalSeats"></span>
+    </div>
+    <div>
+        <label>
+            <input asp-for="Supports3D" type="checkbox" /> Поддержка 3D
+        </label>
+    </div>
+    <button type="submit">Сохранить</button>
+</form>
+
+<a asp-action="Index">Назад</a>
+

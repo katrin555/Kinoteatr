@@ -1,0 +1,41 @@
+@model Seat
+@{
+    ViewData["Title"] = "Добавить место";
+}
+
+<h1>Добавить место</h1>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label asp-for="HallId">Зал</label>
+        <select asp-for="HallId" asp-items="ViewBag.HallId"></select>
+        <span asp-validation-for="HallId"></span>
+    </div>
+    <div>
+        <label asp-for="Row">Ряд</label>
+        <input asp-for="Row" type="number" />
+        <span asp-validation-for="Row"></span>
+    </div>
+    <div>
+        <label asp-for="SeatNumber">Номер места</label>
+        <input asp-for="SeatNumber" type="number" />
+        <span asp-validation-for="SeatNumber"></span>
+    </div>
+    <div>
+        <label asp-for="Type">Тип места</label>
+        <input asp-for="Type" />
+        <span asp-validation-for="Type"></span>
+    </div>
+    <div>
+        <label asp-for="Status">Статус</label>
+        <select asp-for="Status">
+            <option value="available">Доступно</option>
+            <option value="broken">Сломано</option>
+        </select>
+        <span asp-validation-for="Status"></span>
+    </div>
+    <button type="submit">Создать</button>
+</form>
+
+<a asp-action="Index">Назад</a>
+

@@ -1,0 +1,54 @@
+@model List<Seat>
+@{
+    ViewData["Title"] = "Управление местами";
+}
+
+<h1>Управление местами</h1>
+
+<p><a asp-action="Create">Добавить место</a></p>
+
+<form method="get">
+    <label>
+        Фильтр по залу:
+        <select name="hallId" onchange="this.form.submit()">
+            <option value="">Все залы</option>
+            @if (ViewData["HallId"] is SelectList hallList)
+            {
+                @foreach (var item in hallList)
+                {
+                    <option value="@item.Value" selected="@(ViewContext.HttpContext.Request.Query["hallId"] == item.Value)">@item.Text</option>
+                }
+            }
+        </select>
+    </label>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Зал</th>
+            <th>Ряд</th>
+            <th>Место</th>
+            <th>Тип</th>
+            <th>Статус</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var seat in Model)
+        {
+            <tr>
+                <td>@seat.Hall.Name</td>
+                <td>@seat.Row</td>
+                <td>@seat.SeatNumber</td>
+                <td>@seat.Type</td>
+                <td>@seat.Status</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@seat.Id">Редактировать</a> |
+                    <a asp-action="Delete" asp-route-id="@seat.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

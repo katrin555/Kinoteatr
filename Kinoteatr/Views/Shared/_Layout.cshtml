@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Кинотеатр</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a asp-controller="Home" asp-action="Index">Главная</a>
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <a asp-controller="Movies" asp-action="Index">Фильмы</a>
+                <a asp-controller="Sessions" asp-action="Index">Расписание</a>
+                <a asp-controller="Tickets" asp-action="Cart">Корзина</a>
+                <a asp-controller="Purchases" asp-action="History">История покупок</a>
+                <a asp-controller="Refunds" asp-action="MyRefunds">Мои возвраты</a>
+                <a asp-controller="Profile" asp-action="Index">Профиль</a>
+                
+                @if (User.IsInRole("Administrator"))
+                {
+                    <a asp-controller="Admin/AdminMovies" asp-action="Index">Управление фильмами</a>
+                    <a asp-controller="Admin/AdminSessions" asp-action="Index">Управление сеансами</a>
+                    <a asp-controller="Admin/AdminHalls" asp-action="Index">Управление залами</a>
+                    <a asp-controller="Admin/AdminSeats" asp-action="Index">Управление местами</a>
+                    <a asp-controller="Admin/AdminPrices" asp-action="Index">Управление ценами</a>
+                    <a asp-controller="Admin/AdminUsers" asp-action="Index">Управление пользователями</a>
+                    <a asp-controller="Admin/AdminRefunds" asp-action="Index">Управление возвратами</a>
+                }
+                
+                <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                    <button type="submit">Выход</button>
+                </form>
+            }
+            else
+            {
+                <a asp-controller="Account" asp-action="Login">Вход</a>
+                <a asp-controller="Account" asp-action="Register">Регистрация</a>
+            }
+        </nav>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+</body>
+</html>
+

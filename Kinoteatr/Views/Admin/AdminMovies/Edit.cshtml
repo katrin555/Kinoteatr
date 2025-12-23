@@ -1,0 +1,54 @@
+@model Movie
+@{
+    ViewData["Title"] = "Редактировать фильм";
+}
+
+<h1>Редактировать фильм</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div>
+        <label asp-for="Title">Название</label>
+        <input asp-for="Title" />
+        <span asp-validation-for="Title"></span>
+    </div>
+    <div>
+        <label asp-for="Description">Описание</label>
+        <textarea asp-for="Description"></textarea>
+        <span asp-validation-for="Description"></span>
+    </div>
+    <div>
+        <label asp-for="Genre">Жанр</label>
+        <input asp-for="Genre" />
+        <span asp-validation-for="Genre"></span>
+    </div>
+    <div>
+        <label asp-for="Duration">Длительность (минут)</label>
+        <input asp-for="Duration" type="number" />
+        <span asp-validation-for="Duration"></span>
+    </div>
+    <div>
+        <label asp-for="AgeRestriction">Возрастное ограничение</label>
+        <input asp-for="AgeRestriction" />
+        <span asp-validation-for="AgeRestriction"></span>
+    </div>
+    <div>
+        <label asp-for="ReleaseYear">Год выпуска</label>
+        <input asp-for="ReleaseYear" type="number" />
+        <span asp-validation-for="ReleaseYear"></span>
+    </div>
+    <div>
+        <label asp-for="ProductionCountry">Страна</label>
+        <input asp-for="ProductionCountry" />
+        <span asp-validation-for="ProductionCountry"></span>
+    </div>
+    <div>
+        <label asp-for="Poster">Постер (URL)</label>
+        <input asp-for="Poster" />
+        <span asp-validation-for="Poster"></span>
+    </div>
+    <button type="submit">Сохранить</button>
+</form>
+
+<a asp-action="Index">Назад</a>
+

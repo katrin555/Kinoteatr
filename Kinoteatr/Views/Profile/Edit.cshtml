@@ -1,0 +1,38 @@
+@model EditProfileViewModel
+@{
+    ViewData["Title"] = "Редактирование профиля";
+}
+
+<h1>Редактирование профиля</h1>
+
+<form asp-action="Edit" method="post">
+    <div>
+        <label asp-for="FirstName">Имя</label>
+        <input asp-for="FirstName" />
+        <span asp-validation-for="FirstName"></span>
+    </div>
+    <div>
+        <label asp-for="LastName">Фамилия</label>
+        <input asp-for="LastName" />
+        <span asp-validation-for="LastName"></span>
+    </div>
+    <div>
+        <label asp-for="MiddleName">Отчество</label>
+        <input asp-for="MiddleName" />
+        <span asp-validation-for="MiddleName"></span>
+    </div>
+    <div>
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" type="email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label asp-for="Phone">Телефон</label>
+        <input asp-for="Phone" />
+        <span asp-validation-for="Phone"></span>
+    </div>
+    <button type="submit">Сохранить</button>
+</form>
+
+<a asp-action="Index">Отмена</a>
+

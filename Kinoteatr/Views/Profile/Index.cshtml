@@ -1,0 +1,16 @@
+@model User
+@{
+    ViewData["Title"] = "Профиль";
+}
+
+<h1>Профиль</h1>
+
+<p><strong>Логин:</strong> @Model.UserName</p>
+<p><strong>Email:</strong> @Model.Email</p>
+<p><strong>Имя:</strong> @Model.FirstName</p>
+<p><strong>Фамилия:</strong> @Model.LastName</p>
+<p><strong>Отчество:</strong> @(Model.MiddleName ?? "-")</p>
+<p><strong>Телефон:</strong> @Model.Phone</p>
+
+<a asp-action="Edit">Редактировать</a>
+

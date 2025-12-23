@@ -1,0 +1,36 @@
+@model List<Session>
+@{
+    ViewData["Title"] = "Расписание сеансов";
+}
+
+<h1>Расписание сеансов</h1>
+
+<form method="get">
+    <input type="date" name="date" value="@ViewContext.HttpContext.Request.Query["date"]" />
+    <button type="submit">Показать</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Фильм</th>
+            <th>Дата и время</th>
+            <th>Зал</th>
+            <th>Цена</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var session in Model)
+        {
+            <tr>
+                <td>@session.Movie.Title</td>
+                <td>@session.DateTime.ToString("dd.MM.yyyy HH:mm")</td>
+                <td>@session.Hall.Name</td>
+                <td>@session.Price руб.</td>
+                <td><a asp-action="Details" asp-route-id="@session.Id">Выбрать места</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+

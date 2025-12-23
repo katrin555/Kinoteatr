@@ -1,0 +1,43 @@
+@model List<Movie>
+@{
+    ViewData["Title"] = "Фильмы";
+}
+
+<h1>Фильмы</h1>
+
+<form method="get">
+    <input type="text" name="search" placeholder="Поиск..." value="@ViewContext.HttpContext.Request.Query["search"]" />
+    <select name="genre">
+        <option value="">Все жанры</option>
+        @foreach (var genre in ViewBag.Genres)
+        {
+            <option value="@genre" selected="@(ViewContext.HttpContext.Request.Query["genre"] == genre)">@genre</option>
+        }
+    </select>
+    <button type="submit">Поиск</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Жанр</th>
+            <th>Длительность</th>
+            <th>Возрастное ограничение</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Title</td>
+                <td>@movie.Genre</td>
+                <td>@movie.Duration мин</td>
+                <td>@movie.AgeRestriction</td>
+                <td><a asp-action="Details" asp-route-id="@movie.Id">Подробнее</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+

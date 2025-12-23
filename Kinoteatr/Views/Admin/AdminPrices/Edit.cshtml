@@ -1,0 +1,22 @@
+@model Session
+@{
+    ViewData["Title"] = "Изменить цену";
+}
+
+<h1>Изменить цену</h1>
+
+<p><strong>Фильм:</strong> @Model.Movie.Title</p>
+<p><strong>Зал:</strong> @Model.Hall.Name</p>
+<p><strong>Дата и время:</strong> @Model.DateTime.ToString("dd.MM.yyyy HH:mm")</p>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <div>
+        <label>Цена</label>
+        <input name="price" type="number" step="0.01" value="@Model.Price" />
+    </div>
+    <button type="submit">Сохранить</button>
+</form>
+
+<a asp-action="Index">Назад</a>
+
